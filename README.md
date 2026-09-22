@@ -1,14 +1,30 @@
 Titanic Survival Prediction
 
-An end-to-end Machine Learning project based on the Titanic dataset. The project covers data exploration, preprocessing, feature preparation, model training, evaluation, comparison, and Kaggle submission.
+A machine learning project using the famous Titanic dataset from Kaggle. The goal of the project is to predict whether a passenger survived based on different passenger and ticket-related features.
+
+I worked through the full machine learning process, starting with exploring the data and handling missing values, then training and comparing different classification models before creating a final Kaggle submission.
 
 Project Overview
 
-The objective of this project is to predict whether a Titanic passenger survived based on information such as passenger class, sex, age, family relationships, fare, and port of embarkation.
+The model uses information such as:
 
-The project was developed using Python and Scikit-learn, with multiple classification models tested and compared using a validation dataset.
+Passenger class
 
-Technologies Used
+Sex
+
+Age
+
+Number of siblings/spouses aboard
+
+Number of parents/children aboard
+
+Fare
+
+Port of embarkation
+
+The project was built using Python and Scikit-learn, with a few different classification algorithms tested on a validation set.
+
+Tools & Libraries
 
 Python
 
@@ -26,66 +42,60 @@ Kaggle
 
 Dataset
 
-The project uses the Titanic dataset provided by the Kaggle Titanic competition.
+The dataset comes from the Kaggle Titanic competition
+.
 
-The training dataset contains 891 passengers with known survival outcomes, while the test dataset contains 418 passengers for which survival outcomes are hidden.
+There are 891 passengers in the training dataset, where the survival outcome is known, and 418 passengers in the test dataset, where the survival outcome is hidden.
 
-Main Features
-
-Pclass — Passenger class
-
-Sex — Passenger gender
-
-Age — Passenger age
-
-SibSp — Number of siblings/spouses aboard
-
-Parch — Number of parents/children aboard
-
-Fare — Ticket fare
-
-Embarked — Port of embarkation
-
+Features Used
+Feature	Description
+Pclass	Passenger class
+Sex	Passenger sex
+Age	Passenger age
+SibSp	Number of siblings/spouses aboard
+Parch	Number of parents/children aboard
+Fare	Ticket fare
+Embarked	Port where the passenger boarded
 Project Workflow
 1. Data Exploration
 
-The dataset was examined to understand:
+I first explored the dataset to get an idea of its structure and identify things that needed to be handled before training the models.
 
-Dataset structure
+This included looking at:
 
-Feature types
+Data types and dataset structure
 
 Missing values
 
 Survival distribution
 
-Relationships between survival and passenger characteristics
+Relationships between features and survival
 
 2. Data Preprocessing
 
-The following preprocessing steps were performed:
+A few preprocessing steps were applied before training the models:
 
-Missing Age values were filled using the median age from the training data.
+Missing Age values were replaced with the median age from the training data.
 
-Missing Embarked values were filled using the most common category.
+Missing Embarked values were replaced with the most common value.
 
-Cabin was removed for the initial model because of the large number of missing values.
+Cabin was removed because a large portion of the values were missing.
 
-PassengerId, Name, and Ticket were removed from the initial feature set.
+PassengerId, Name, and Ticket were not used in the initial model.
 
-Categorical variables were converted into numerical representations.
+Categorical features were converted into numerical values.
 
 3. Feature Selection
 
-The initial model used seven features:
+The initial model used these seven features:
 
 Pclass, Sex, Age, SibSp, Parch, Fare, and Embarked.
 
 4. Model Training
 
-The training data was divided into training and validation sets using an 80/20 split with stratification.
+The training data was split into training and validation sets using an 80/20 split with stratification.
 
-Three classification algorithms were evaluated:
+I tested three classification models:
 
 Decision Tree
 
@@ -93,7 +103,7 @@ Random Forest
 
 Logistic Regression
 
-A simple baseline was also calculated for comparison.
+I also calculated a simple baseline accuracy to have something to compare the models against.
 
 Model Results
 Model	Validation Accuracy
@@ -102,75 +112,75 @@ Random Forest	83.80%
 Logistic Regression	81.01%
 Baseline	61.45%
 
-The Decision Tree achieved the highest validation accuracy among the models tested.
+Based on this validation split, the Decision Tree performed best among the models tested.
 
 Final Model
 
-The final model was a Decision Tree with:
+The final model was a Decision Tree using:
 
 max_depth = 5
-
 random_state = 42
 
-After model evaluation, the final Decision Tree was retrained using the complete training dataset of 891 passengers.
 
-It was then used to generate predictions for the 418 passengers in the Kaggle test dataset.
+After evaluating the models, I retrained the Decision Tree using the complete training dataset of 891 passengers.
+
+The trained model was then used to predict the survival outcomes for the 418 passengers in the Kaggle test dataset.
 
 Kaggle Result
 
-Final Kaggle Score: 77.27%
+Kaggle Score: 77.27%
 
-The difference between the validation accuracy and Kaggle score demonstrates that performance on a single validation split does not necessarily represent performance on completely unseen data.
+The Kaggle score was lower than the validation accuracy. This was a useful reminder that performance on one validation split does not always translate directly to completely unseen data.
 
-This was an important part of the project and highlighted the importance of model generalization and robust evaluation.
+It also showed why model evaluation and generalization are important when working with machine learning models.
 
-Key Learnings
+What I Learned
 
-Through this project, I practiced:
+This project gave me hands-on practice with:
 
 Exploratory Data Analysis
 
 Data preprocessing
 
-Missing-value handling
+Handling missing values
 
-Categorical feature encoding
+Encoding categorical variables
 
 Feature selection
 
-Train-validation splitting
+Train/validation splitting
 
-Classification modeling
+Classification models
 
-Model comparison
+Comparing different models
 
-Confusion matrix and classification report analysis
+Confusion matrices and classification reports
 
-Feature importance analysis
+Feature importance
 
-Kaggle submission workflow
+Creating Kaggle submissions
 
 Future Improvements
 
-The project can be further improved through feature engineering and more robust model evaluation.
+There are several things I would like to try to improve the model:
 
-Planned improvements include:
+Create a FamilySize feature
 
-Creating FamilySize
+Create an IsAlone feature
 
-Creating IsAlone
+Extract passenger titles from Name
 
-Extracting passenger titles from Name
+Improve the way missing ages are handled
 
-Improving age handling
+Explore the Cabin feature instead of removing it
 
-Exploring Cabin information
+Look for useful information in Ticket
 
-Investigating Ticket features
+Try additional machine learning models
 
-Testing additional models
+Use cross-validation instead of relying on a single validation split
 
-Using cross-validation for more reliable model evaluation
+Experiment with feature engineering and hyperparameter tuning
 
 Project Structure
 titanic-survival-prediction/
@@ -181,6 +191,8 @@ titanic-survival-prediction/
 
 Conclusion
 
-This project provided a practical implementation of an end-to-end machine learning workflow, from raw data exploration and preprocessing to model comparison and Kaggle submission.
+This project was a good introduction to building a complete machine learning workflow using a real dataset.
 
-The initial model achieved a 77.27% Kaggle score, providing a baseline for future feature engineering and model improvements.
+I started with basic data exploration and preprocessing, tested several classification models, compared their results, and finally created a submission for the Kaggle Titanic competition.
+
+The final Kaggle score was 77.27%, and there is still plenty of room to improve the model through better feature engineering and evaluation.
